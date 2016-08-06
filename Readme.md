@@ -1,7 +1,7 @@
 # Личный проект «Кекстаграм» [![Build status][travis-image]][travis-url] [![Dependency status][dependency-image]][dependency-url]
 
 * Студент: [Юлия Романова](https://up.htmlacademy.ru/javascript/6/user/155720).
-* Наставник: `Неизвестно`.
+* Наставник: Дмитрий Ермаков.
 
 ---
 
