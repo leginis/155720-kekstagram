@@ -5,10 +5,10 @@ function getMessage(a, b) {
   if (typeof a == 'number') {
     return describeSVG(a, b)
   }
-  if (typeof a == 'object' && typeof b != 'object') {
+  if (Array.isArray(a) && !Array.isArray(b)) {
     return describePNG(a)
   }
-  if (typeof a == 'object' && typeof b == 'object') {
+  if (Array.isArray(a) && Array.isArray(b)) {
     return describeJPEG(a, b)
   }
 }
