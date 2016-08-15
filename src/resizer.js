@@ -141,20 +141,20 @@
 
       //Запомнили изначальное значение х, т.к. первый цикл нам его испортит (перезапишет значение)
       var originalX = x;
-      while (x<=finalX) {
-        this._ctx.arc(x, y, 3, 0, Math.PI*2, false);
+      while (x <= finalX) {
+        this._ctx.arc(x, y, 3, 0, Math.PI * 2, false);
         this._ctx.fill();
         this._ctx.beginPath();
-        this._ctx.arc(x, finalY, 3, 0, Math.PI*2, false);
+        this._ctx.arc(x, finalY, 3, 0, Math.PI * 2, false);
         this._ctx.fill();
         x = Math.floor(x + 10);
       }
 
-      while (y<=finalY) {
-        this._ctx.arc(originalX, y, 3, 0, Math.PI*2, false);
+      while (y <= finalY) {
+        this._ctx.arc(originalX, y, 3, 0, Math.PI * 2, false);
         this._ctx.fill();
         this._ctx.beginPath();
-        this._ctx.arc(finalX, y, 3, 0, Math.PI*2, false);
+        this._ctx.arc(finalX, y, 3, 0, Math.PI * 2, false);
         this._ctx.fill();
         y = Math.floor(y + 10);
       }
