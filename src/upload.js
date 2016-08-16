@@ -72,11 +72,13 @@
    * @return {boolean}
    */
   function resizeFormIsValid() {
+    var left = parseInt(leftOffsetInput.value, 10);
+    var imageSize = parseInt(imageSizeOffsetInput.value, 10);
+    var up = parseInt(upOffsetInput.value, 10);
     return (
-      +leftOffsetInput.value + +imageSizeOffsetInput.value <= currentResizer._image.naturalWidth
-      && +upOffsetInput.value + +imageSizeOffsetInput.value <= currentResizer._image.naturalHeight
-      && upOffsetInput.value >= 0
-      && leftOffsetInput.value >= 0
+      left + imageSize <= currentResizer._image.naturalWidth
+      && up + imageSize <= currentResizer._image.naturalHeight
+      && up >= 0 && left >= 0
     );
   }
 
