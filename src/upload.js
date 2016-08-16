@@ -8,6 +8,10 @@
 'use strict';
 
 (function() {
+
+  var browserCookies = require('browser-cookies');
+  var moment = require('moment');
+
   /** @enum {string} */
   var FileType = {
     'GIF': '',
@@ -259,6 +263,15 @@
     // убрать предыдущий примененный класс. Для этого нужно или запоминать его
     // состояние или просто перезаписывать.
     filterImage.className = 'filter-image-preview ' + filterMap[selectedFilter];
+
+    var now = new Date();
+    var thisYearBirthday = new Date(now.getUTCFullYear(), 11, 9);
+    var prevYearBirthday = new Date(now.getUTCFullYear()-1, 11, 9);
+    var lastBirthday = now > thisYearBirthday ? thisYearBirthday : prevYearBirthday;
+    var ms = now - lastBirthday;
+    var days = new moment.duration(ms).asDays();
+
+    browserCookies.set('upload-filter', selectedFilter, {expires: days});
   };
 
   cleanupResizer();
