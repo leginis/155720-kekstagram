@@ -72,7 +72,14 @@
    * @return {boolean}
    */
   function resizeFormIsValid() {
-    return true;
+    var left = parseInt(leftOffsetInput.value, 10);
+    var imageSize = parseInt(imageSizeOffsetInput.value, 10);
+    var up = parseInt(upOffsetInput.value, 10);
+    return (
+      left + imageSize <= currentResizer._image.naturalWidth
+      && up + imageSize <= currentResizer._image.naturalHeight
+      && up >= 0 && left >= 0
+    );
   }
 
   /**
@@ -205,8 +212,28 @@
 
       resizeForm.classList.add('invisible');
       filterForm.classList.remove('invisible');
+    } else {
+      submitButton.disabled = true;
     }
   };
+
+  var leftOffsetInput = document.querySelector('#resize-x');
+  var upOffsetInput = document.querySelector('#resize-y');
+  var imageSizeOffsetInput = document.querySelector('#resize-size');
+  var submitButton = document.querySelector('#resize-fwd');
+
+
+  var onResizeFormChange = function() {
+    if (resizeFormIsValid()) {
+      submitButton.disabled = false;
+    }
+  };
+
+  leftOffsetInput.onkeyup = onResizeFormChange;
+
+  upOffsetInput.onkeyup = onResizeFormChange;
+
+  imageSizeOffsetInput.onkeyup = onResizeFormChange;
 
   /**
    * Сброс формы фильтра. Показывает форму кадрирования.
