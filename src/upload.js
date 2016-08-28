@@ -274,6 +274,16 @@
     browserCookies.set('upload-filter', selectedFilter, {expires: days});
   };
 
+  function setSavedFilter() {
+    var savedFilter = browserCookies.get('upload-filter');
+    if (savedFilter) {
+      var savedFilterInput = document.querySelector('#upload-filter-' + savedFilter);
+      savedFilterInput.checked = true;
+      filterForm.onchange();
+    }
+  }
+
+  setSavedFilter();
   cleanupResizer();
   updateBackground();
 })();
