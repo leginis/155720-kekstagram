@@ -10,7 +10,6 @@
 (function() {
 
   var browserCookies = require('browser-cookies');
-  var moment = require('moment');
 
   /** @enum {string} */
   var FileType = {
@@ -293,10 +292,10 @@
 
     var now = new Date();
     var thisYearBirthday = new Date(now.getUTCFullYear(), 11, 9);
-    var prevYearBirthday = new Date(now.getUTCFullYear()-1, 11, 9);
+    var prevYearBirthday = new Date(now.getUTCFullYear() - 1, 11, 9);
     var lastBirthday = now > thisYearBirthday ? thisYearBirthday : prevYearBirthday;
     var ms = now - lastBirthday;
-    var days = new moment.duration(ms).asDays();
+    var days = ms / 1000 / 60 / 60 / 24;
 
     browserCookies.set('upload-filter', selectedFilter, {expires: days});
   };
