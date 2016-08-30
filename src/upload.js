@@ -8,6 +8,9 @@
 'use strict';
 
 (function() {
+
+  var browserCookies = require('browser-cookies');
+
   /** @enum {string} */
   var FileType = {
     'GIF': '',
@@ -286,8 +289,27 @@
     // убрать предыдущий примененный класс. Для этого нужно или запоминать его
     // состояние или просто перезаписывать.
     filterImage.className = 'filter-image-preview ' + filterMap[selectedFilter];
+
+    var now = new Date();
+    var thisYearBirthday = new Date(now.getUTCFullYear(), 11, 9);
+    var prevYearBirthday = new Date(now.getUTCFullYear() - 1, 11, 9);
+    var lastBirthday = now > thisYearBirthday ? thisYearBirthday : prevYearBirthday;
+    var ms = now - lastBirthday;
+    var days = ms / 1000 / 60 / 60 / 24;
+
+    browserCookies.set('upload-filter', selectedFilter, {expires: days});
   };
 
+  function setSavedFilter() {
+    var savedFilter = browserCookies.get('upload-filter');
+    if (savedFilter) {
+      var savedFilterInput = document.querySelector('#upload-filter-' + savedFilter);
+      savedFilterInput.checked = true;
+      filterForm.onchange();
+    }
+  }
+
+  setSavedFilter();
   cleanupResizer();
   updateBackground();
 })();
