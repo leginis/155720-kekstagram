@@ -1,4 +1,6 @@
-var JSONPrequest = function (url, callback) {
+'use strict';
+
+var executeJSONPrequest = function(url, callback) {
   var callbackName = 'JSONPCallback';
   window[callbackName] = callback;
   var script = document.createElement('script');
@@ -7,7 +9,7 @@ var JSONPrequest = function (url, callback) {
 };
 
 
-JSONPrequest('http://localhost:1506/api/pictures', function (pictures) {
+executeJSONPrequest('http://localhost:1506/api/pictures', function(pictures) {
   window.pictures = pictures;
 });
 
