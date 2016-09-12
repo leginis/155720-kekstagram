@@ -1,4 +1,4 @@
-var JSONPrequst = function (url, callback) {
+var JSONPrequest = function (url, callback) {
   var callbackName = 'JSONPCallback';
   window[callbackName] = callback;
   var script = document.createElement('script');
